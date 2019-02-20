@@ -1,18 +1,18 @@
 
 FROM alpine:3.8
 
-RUN apk update
-
-RUN apk add \
+RUN apk add --update \
 	bash \
-	nodejs \
-	nodejs-npm \
+	git \
+	curl \
 	make \
-	git
+	ca-certificates \
+	nodejs \
+	nodejs-npm
+
+RUN rm -rf /var/cache/apk/*
 
 RUN node -v
 RUN npm -v
-
-RUN apk update && apk add ca-certificates && rm -rf /var/cache/apk/*
 
 ENTRYPOINT /bin/bash

@@ -3,9 +3,13 @@ FROM alpine:3.8
 
 RUN apk add --update \
 	bash \
-	curl \
 	git \
+	curl \
+	make \
+	ca-certificates \
 	python3
+
+RUN rm -rf /var/cache/apk/*
 
 RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py; \
 	python3 get-pip.py; \
