@@ -1,6 +1,7 @@
+
 FROM node:10-alpine
 
-RUN apk add --update --no-cache --virtual \
+RUN apk add --update \
 	bash \
 	git \
 	curl \
@@ -8,7 +9,5 @@ RUN apk add --update --no-cache --virtual \
 	ca-certificates
 
 RUN rm -rf /var/cache/apk/*
-
-# CMD [ "node" ]
 
 ENTRYPOINT /bin/bash
