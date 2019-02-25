@@ -5,9 +5,16 @@ version: 2.1
 
 executors:
     rsync_box:
+        parameters:
+            image:
+                type: string
+                default: aplazame/alpine:0.1.7-rsync
+            working_directory:
+                type: string
+                default: /tmp/workspace
         docker:
-        - image: aplazame/alpine:0.1.7-rsync
-        working_directory: /tmp/workspace
+        - image: << parameters.image >>
+        working_directory: << parameters.working_directory >>
 
 commands:
     rsync:
