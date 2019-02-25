@@ -20,7 +20,7 @@ commands:
     folder:
         description: "A simple encapsulation of doing a rsync"
         parameters:
-            folder:
+            src:
                 type: string
             user:
                 type: string
@@ -40,7 +40,7 @@ commands:
             name: RSync Deploy
             command: >
                 rsync -rva<<# parameters.overwrite >> --delete<</ parameters.overwrite >> \
-                    << parameters.folder >>/ \
+                    << parameters.src >>/ \
                     << parameters.user >>@<< parameters.host >>:<< parameters.dest >>
 
 jobs:
@@ -57,7 +57,7 @@ jobs:
                 type: executor
                 default: rsync_box
 
-            then:
+            do_deploy:
                 description: commands executed after rsync setup
                 type: steps
                 default: []
@@ -67,4 +67,4 @@ jobs:
 
         - add_ssh_keys
 
-        - steps: << parameters.then >>
+        - steps: << parameters.do_deploy >>
