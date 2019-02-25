@@ -33,6 +33,7 @@ commands:
                 default: true
             arguments:
                 type: string
+                default: ''
         steps:
         - run:
             name: Gathering the public SSH
