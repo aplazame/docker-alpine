@@ -17,7 +17,7 @@ executors:
         working_directory: << parameters.working_directory >>
 
 commands:
-    s3_folder:
+    folder:
         description: "Parametrized folder deploy to S3"
         parameters:
             bucket_name:
@@ -38,7 +38,7 @@ commands:
                         <<# parameters.overwrite >>--delete <</ parameters.overwrite >>\
                         "<< parameters.src >>" "s3://<< parameters.bucket_name >>/<< parameters.dest >>";
 
-    s3_file:
+    file:
         description: "Parametrized single file deploy to S3"
         parameters:
             bucket_name:
@@ -62,7 +62,7 @@ commands:
                         --content-type "<< parameters.content_type >>";
 
 jobs:
-    s3_deploy:
+    deploy:
         executor: << parameters.executor >>
         parameters:
             executor:

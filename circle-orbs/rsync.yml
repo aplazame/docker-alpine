@@ -17,7 +17,7 @@ executors:
         working_directory: << parameters.working_directory >>
 
 commands:
-    rsync:
+    folder:
         description: "A simple encapsulation of doing a rsync"
         parameters:
             folder:
@@ -44,7 +44,7 @@ commands:
                     << parameters.user >>@<< parameters.host >>:<< parameters.dest >>
 
 jobs:
-    rsync_deploy:
+    deploy:
         executor: << parameters.executor >>
         parameters:
             workspace:
