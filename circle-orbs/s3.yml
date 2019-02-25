@@ -29,6 +29,8 @@ commands:
             overwrite:
                 type: boolean
                 default: true
+            arguments:
+                type: string
         steps:
             - run:
                 name: "Deploying folder to s3: << parameters.src >> > s3:<< parameters.bucket_name >>/<< parameters.dest >>"
@@ -36,7 +38,8 @@ commands:
                     aws s3 sync --acl private \
                         --cache-control "private, max-age:3600" \
                         <<# parameters.overwrite >>--delete <</ parameters.overwrite >>\
-                        "<< parameters.src >>" "s3://<< parameters.bucket_name >>/<< parameters.dest >>";
+                        "<< parameters.src >>" "s3://<< parameters.bucket_name >>/<< parameters.dest >>"\
+                        <<# parameters.arguments >> << parameters.arguments >><</ parameters.arguments >>;
 
     file:
         description: "Parametrized single file deploy to S3"
@@ -53,13 +56,16 @@ commands:
             cache_control:
                 type: string
                 default: private, max-age:3600
+            arguments:
+                type: string
         steps:
             - run:
                 name: "Deploying file to s3: << parameters.src >> > s3:<< parameters.bucket_name >>/<< parameters.dest >>"
                 command: >
                     aws s3 cp "<< parameters.src >>" "s3://<< parameters.bucket_name >>/<< parameters.dest >>" \
                         --cache-control "<< parameters.cache_control >>" \
-                        --content-type "<< parameters.content_type >>";
+                        --content-type "<< parameters.content_type >>"\
+                        <<# parameters.arguments >> << parameters.arguments >><</ parameters.arguments >>;
 
 jobs:
     deploy:

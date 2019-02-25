@@ -31,6 +31,8 @@ commands:
             overwrite:
                 type: boolean
                 default: true
+            arguments:
+                type: string
         steps:
         - run:
             name: Gathering the public SSH
@@ -41,7 +43,8 @@ commands:
             command: >
                 rsync -rva<<# parameters.overwrite >> --delete<</ parameters.overwrite >> \
                     << parameters.src >>/ \
-                    << parameters.user >>@<< parameters.host >>:<< parameters.dest >>
+                    << parameters.user >>@<< parameters.host >>:<< parameters.dest >>\
+                    <<# parameters.arguments >> << parameters.arguments >><</ parameters.arguments >>;
 
 jobs:
     deploy:
