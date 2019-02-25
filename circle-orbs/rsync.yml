@@ -1,0 +1,63 @@
+# This code is licensed from CircleCI to the user under the MIT license. See
+# https://circleci.com/orbs/registry/licensing for details.
+
+version: 2.1
+
+executors:
+    rsync_box:
+        docker:
+        - image: aplazame/alpine:0.1.7-rsync
+        working_directory: /tmp/workspace
+
+commands:
+    rsync:
+        description: "A simple encapsulation of doing a rsync"
+        parameters:
+            folder:
+                type: string
+            user:
+                type: string
+            host:
+                type: string
+            dest:
+                type: string
+            overwrite:
+                type: boolean
+                default: true
+        steps:
+        - run:
+            name: Gathering the public SSH
+            command: ssh-keyscan << parameters.host >> >> ~/.ssh/known_hosts
+
+        - run:
+            name: RSync Deploy
+            command: >
+                rsync -rva<<# parameters.overwrite >> --delete<</ parameters.overwrite >> \
+                    << parameters.folder >>/ \
+                    << parameters.user >>@<< parameters.host >>:<< parameters.dest >>
+
+jobs:
+    rsync_deploy:
+        executor: << parameters.executor >>
+        parameters:
+            workspace:
+                description: working directory
+                type: string
+                default: /tmp/workspace
+
+            executor:
+                description: executor for s3_deploy
+                type: executor
+                default: rsync_box
+
+            then:
+                description: commands executed after rsync setup
+                type: steps
+                default: []
+        steps:
+        - attach_workspace:
+            at: << parameters.workspace >>
+
+        - add_ssh_keys
+
+        - steps: << parameters.then >>

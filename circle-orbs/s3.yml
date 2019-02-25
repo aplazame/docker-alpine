@@ -1,0 +1,74 @@
+# This code is licensed from CircleCI to the user under the MIT license. See
+# https://circleci.com/orbs/registry/licensing for details.
+
+version: 2.1
+
+executors:
+    s3_box:
+        docker:
+        - image: aplazame/alpine:0.1.7-aws
+        working_directory: /tmp/workspace
+
+commands:
+    s3_folder:
+        description: "Parametrized folder deploy to S3"
+        parameters:
+            bucket_name:
+                type: string
+            src:
+                type: string
+            dest:
+                type: string
+            overwrite:
+                type: boolean
+                default: true
+        steps:
+            - run:
+                name: "Deploying folder to s3: << parameters.src >> > s3:<< parameters.bucket_name >>/<< parameters.dest >>"
+                command: |
+                    aws s3 sync --acl private \
+                        --cache-control "private, max-age:3600" \
+                        <<# parameters.overwrite >>--delete <</ parameters.overwrite >>\
+                        "<< parameters.src >>" "s3://<< parameters.bucket_name >>/<< parameters.dest >>";
+
+    s3_file:
+        description: "Parametrized single file deploy to S3"
+        parameters:
+            bucket_name:
+                type: string
+            src:
+                type: string
+            dest:
+                type: string
+                default: ""
+            content_type:
+                type: string
+            cache_control:
+                type: string
+                default: private, max-age:3600
+        steps:
+            - run:
+                name: "Deploying file to s3: << parameters.src >> > s3:<< parameters.bucket_name >>/<< parameters.dest >>"
+                command: >
+                    aws cp "<< parameters.src >>" "s3://<< parameters.bucket_name >>/<< parameters.dest >>" \
+                        --cache-control "<< parameters.cache_control >>" \
+                        --content-type "<< parameters.content_type >>";
+
+jobs:
+    s3_deploy:
+        executor: << parameters.executor >>
+        parameters:
+            executor:
+                description: executor for s3_deploy
+                type: executor
+                default: s3_box
+
+            do_deploy:
+                description: commands to be executed after for S3 deploy
+                type: steps
+                default: []
+        steps:
+        - attach_workspace:
+            at: /tmp/workspace
+
+        - steps: << parameters.do_deploy >>
