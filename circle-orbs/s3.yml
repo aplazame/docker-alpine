@@ -57,7 +57,7 @@ commands:
             - run:
                 name: "Deploying file to s3: << parameters.src >> > s3:<< parameters.bucket_name >>/<< parameters.dest >>"
                 command: >
-                    aws cp "<< parameters.src >>" "s3://<< parameters.bucket_name >>/<< parameters.dest >>" \
+                    aws s3 cp "<< parameters.src >>" "s3://<< parameters.bucket_name >>/<< parameters.dest >>" \
                         --cache-control "<< parameters.cache_control >>" \
                         --content-type "<< parameters.content_type >>";
 
