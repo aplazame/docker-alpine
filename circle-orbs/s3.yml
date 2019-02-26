@@ -75,6 +75,37 @@ commands:
                         --content-type "<< parameters.content_type >>"\
                         <<# parameters.arguments >> << parameters.arguments >><</ parameters.arguments >>;
 
+    public:
+        description: "Parametrized folder deploy to S3"
+        parameters:
+            bucket_name:
+                type: string
+            src:
+                type: string
+                default: public
+
+            dest:
+                type: string
+                default: ''
+            acl:
+                type: string
+                default: private
+            overwrite:
+                type: boolean
+                default: true
+            arguments:
+                type: string
+                default: ''
+        steps:
+            - run:
+                name: "Deploying folder to s3: << parameters.src >> > s3:<< parameters.bucket_name >>/<< parameters.dest >>"
+                command: |
+                    aws s3 sync --acl << parameters.acl >> \
+                        --cache-control "private, max-age:3600" \
+                        <<# parameters.overwrite >>--delete <</ parameters.overwrite >>\
+                        "<< parameters.src >>" "s3://<< parameters.bucket_name >>/<< parameters.dest >>"\
+                        <<# parameters.arguments >> << parameters.arguments >><</ parameters.arguments >>;
+
 jobs:
     deploy:
         executor: << parameters.executor >>
@@ -84,12 +115,17 @@ jobs:
                 type: executor
                 default: s3_box
 
+            workspace:
+                description: working directory
+                type: string
+                default: /tmp/workspace
+
             do_deploy:
                 description: commands to be executed after for S3 deploy
                 type: steps
                 default: []
         steps:
         - attach_workspace:
-            at: /tmp/workspace
+            at: << parameters.workspace >>
 
         - steps: << parameters.do_deploy >>
