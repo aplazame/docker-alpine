@@ -70,7 +70,9 @@ commands:
             - run:
                 name: "Deploying file to s3: << parameters.src >> > s3:<< parameters.bucket_name >>/<< parameters.dest >>"
                 command: >
-                    aws s3 cp --acl << parameters.acl >> "<< parameters.src >>" "s3://<< parameters.bucket_name >>/<< parameters.dest >>" \
+                    aws s3 cp --acl << parameters.acl >> \
+                        "<< parameters.src >>" \
+                        "s3://<< parameters.bucket_name >>/<< parameters.dest >>" \
                         --cache-control "<< parameters.cache_control >>" \
                         --content-type "<< parameters.content_type >>"\
                         <<# parameters.arguments >> << parameters.arguments >><</ parameters.arguments >>;
@@ -90,6 +92,15 @@ commands:
             acl:
                 type: string
                 default: private
+            index:
+                type: string
+                default: ''
+            index_content_type:
+                type: string
+                default: text/html
+            index_cache_control:
+                type: string
+                default: no-cache, no-store
             overwrite:
                 type: boolean
                 default: true
@@ -105,6 +116,16 @@ commands:
                         <<# parameters.overwrite >>--delete <</ parameters.overwrite >>\
                         "<< parameters.src >>" "s3://<< parameters.bucket_name >>/<< parameters.dest >>"\
                         <<# parameters.arguments >> << parameters.arguments >><</ parameters.arguments >>;
+
+            - run:
+                condition: << parameters.index >>
+                name: "Deploying index.html to s3 > s3:<< parameters.bucket_name >>/<< parameters.dest >>/<< parameters.index >>"
+                command: >
+                    aws s3 cp --acl << parameters.acl >> \
+                        "<< parameters.src >>/<< parameters.index >>" \
+                        "s3://<< parameters.bucket_name >>/<< parameters.dest >>/<< parameters.index >>" \
+                        --cache-control "<< parameters.index_cache_control >>" \
+                        --content-type "<< parameters.index_content_type >>";
 
 jobs:
     deploy:
