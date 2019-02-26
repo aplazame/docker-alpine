@@ -119,11 +119,11 @@ commands:
 
             - run:
                 condition: << parameters.index >>
-                name: "Deploying index.html to s3 > s3:<< parameters.bucket_name >>/<< parameters.dest >>/<< parameters.index >>"
+                name: "Deploying index.html to s3 > s3:<< parameters.bucket_name >>/<<# parameters.dest >><< parameters.dest >>/<</ parameters.dest >><< parameters.index >>"
                 command: >
                     aws s3 cp --acl << parameters.acl >> \
                         "<< parameters.src >>/<< parameters.index >>" \
-                        "s3://<< parameters.bucket_name >>/<< parameters.dest >>/<< parameters.index >>" \
+                        "s3://<< parameters.bucket_name >>/<<# parameters.dest >><< parameters.dest >>/<</ parameters.dest >><< parameters.index >>" \
                         --cache-control "<< parameters.index_cache_control >>" \
                         --content-type "<< parameters.index_content_type >>";
 
