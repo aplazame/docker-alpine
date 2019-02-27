@@ -92,19 +92,19 @@ commands:
             acl:
                 type: string
                 default: private
-            index:
+            overwrite:
+                type: boolean
+                default: true
+            arguments:
                 type: string
                 default: ''
-            index_content_type:
+            index:
                 type: string
                 default: ''
             index_cache_control:
                 type: string
                 default: no-cache, no-store
-            overwrite:
-                type: boolean
-                default: true
-            arguments:
+            index_arguments:
                 type: string
                 default: ''
         steps:
@@ -125,7 +125,7 @@ commands:
                         "<< parameters.src >>/<< parameters.index >>" \
                         "s3://<< parameters.bucket_name >>/<<# parameters.dest >><< parameters.dest >>/<</ parameters.dest >><< parameters.index >>" \
                         --cache-control "<< parameters.index_cache_control >>"\
-                        <<# parameters.index_content_type >> --content-type "<< parameters.index_content_type >>"<</ parameters.index_content_type >>;
+                        <<# parameters.index_arguments >> << parameters.index_arguments >><</ parameters.index_arguments >>;
 
 jobs:
     deploy:
