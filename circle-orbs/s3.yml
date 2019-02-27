@@ -60,6 +60,7 @@ commands:
                 default: private
             content_type:
                 type: string
+                default: ''
             cache_control:
                 type: string
                 default: private, max-age:3600
@@ -73,8 +74,8 @@ commands:
                     aws s3 cp --acl << parameters.acl >> \
                         "<< parameters.src >>" \
                         "s3://<< parameters.bucket_name >>/<< parameters.dest >>" \
-                        --cache-control "<< parameters.cache_control >>" \
-                        --content-type "<< parameters.content_type >>"\
+                        --cache-control "<< parameters.cache_control >>"\
+                        <<# parameters.content_type >> --content-type "<< parameters.content_type >>"\<</ parameters.content_type >>
                         <<# parameters.arguments >> << parameters.arguments >><</ parameters.arguments >>;
 
     public:
