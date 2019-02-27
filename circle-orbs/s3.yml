@@ -97,7 +97,7 @@ commands:
                 default: ''
             index_content_type:
                 type: string
-                default: text/html
+                default: ''
             index_cache_control:
                 type: string
                 default: no-cache, no-store
@@ -124,8 +124,8 @@ commands:
                     aws s3 cp --acl << parameters.acl >> \
                         "<< parameters.src >>/<< parameters.index >>" \
                         "s3://<< parameters.bucket_name >>/<<# parameters.dest >><< parameters.dest >>/<</ parameters.dest >><< parameters.index >>" \
-                        --cache-control "<< parameters.index_cache_control >>" \
-                        --content-type "<< parameters.index_content_type >>";
+                        --cache-control "<< parameters.index_cache_control >>"\
+                        <<# parameters.index_content_type >> --content-type "<< parameters.index_content_type >>"<</ parameters.index_content_type >>;
 
 jobs:
     deploy:
