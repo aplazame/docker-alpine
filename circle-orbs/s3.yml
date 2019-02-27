@@ -75,7 +75,7 @@ commands:
                         "<< parameters.src >>" \
                         "s3://<< parameters.bucket_name >>/<< parameters.dest >>" \
                         --cache-control "<< parameters.cache_control >>"\
-                        <<# parameters.content_type >> --content-type "<< parameters.content_type >>"\<</ parameters.content_type >>
+                        <<# parameters.content_type >> --content-type "<< parameters.content_type >>"<</ parameters.content_type >>\
                         <<# parameters.arguments >> << parameters.arguments >><</ parameters.arguments >>;
 
     public:
