@@ -40,7 +40,7 @@ commands:
             command: ssh-keyscan << parameters.host >> >> ~/.ssh/known_hosts
 
         - run:
-            name: RSync Deploy
+            name: "RSync Deploy: << parameters.src >>/ > << parameters.host >>:<< parameters.dest >>"
             command: >
                 rsync -rva<<# parameters.overwrite >> --delete<</ parameters.overwrite >> \
                     << parameters.src >>/ \
