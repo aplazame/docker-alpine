@@ -29,6 +29,9 @@ commands:
             acl:
                 type: string
                 default: private
+            cache_control:
+                type: string
+                default: private, max-age:3600
             overwrite:
                 type: boolean
                 default: true
@@ -40,7 +43,7 @@ commands:
                 name: "Deploying folder to s3: << parameters.src >> > s3:<< parameters.bucket_name >>/<< parameters.dest >>"
                 command: |
                     aws s3 sync --acl << parameters.acl >> \
-                        --cache-control "private, max-age:3600" \
+                        --cache-control "<< parameters.cache_control >>" \
                         <<# parameters.overwrite >>--delete <</ parameters.overwrite >>\
                         "<< parameters.src >>" "s3://<< parameters.bucket_name >>/<< parameters.dest >>"\
                         <<# parameters.arguments >> << parameters.arguments >><</ parameters.arguments >>;
@@ -93,6 +96,9 @@ commands:
             acl:
                 type: string
                 default: private
+            cache_control:
+                type: string
+                default: private, max-age:3600
             overwrite:
                 type: boolean
                 default: true
@@ -113,7 +119,7 @@ commands:
                 name: "Deploying folder to s3: << parameters.src >> > s3:<< parameters.bucket_name >>/<< parameters.dest >>"
                 command: |
                     aws s3 sync --acl << parameters.acl >> \
-                        --cache-control "private, max-age:3600" \
+                        --cache-control "<< parameters.cache_control >>" \
                         <<# parameters.overwrite >>--delete <</ parameters.overwrite >>\
                         "<< parameters.src >>" "s3://<< parameters.bucket_name >>/<< parameters.dest >>"\
                         <<# parameters.arguments >> << parameters.arguments >><</ parameters.arguments >>;
