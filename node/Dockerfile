@@ -5,6 +5,7 @@ RUN apk add --update \
 	bash \
 	git \
 	curl \
+	rsync \
 	make \
 	ca-certificates
 
