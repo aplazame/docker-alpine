@@ -7,7 +7,6 @@ RUN apk add --update \
 	bash \
 	openssh-client \
 	ca-certificates \
-	openssh-client \
 	rsync
 
 RUN rm -rf /var/cache/apk/*
