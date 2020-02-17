@@ -7,7 +7,8 @@ RUN apk add --update \
 	curl \
 	rsync \
 	make \
-	ca-certificates
+	ca-certificates \
+	openssh-client
 
 RUN rm -rf /var/cache/apk/*
 

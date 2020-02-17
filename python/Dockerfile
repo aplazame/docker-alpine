@@ -8,6 +8,7 @@ RUN apk add --update \
 	rsync \
 	make \
 	ca-certificates \
+	openssh-client \
 	python3
 
 RUN rm -rf /var/cache/apk/*
