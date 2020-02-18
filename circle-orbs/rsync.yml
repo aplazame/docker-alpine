@@ -8,7 +8,7 @@ executors:
         parameters:
             image:
                 type: string
-                default: aplazame/alpine:0.1.7-rsync
+                default: aplazame/alpine:0.1.10-rsync
             working_directory:
                 type: string
                 default: /tmp/workspace

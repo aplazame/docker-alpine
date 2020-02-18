@@ -18,6 +18,13 @@ Docker Hub is set up for automatically create new images when a semver tag is cr
 
 Orbs is a system that CircleCi has for share jobs, commands, and executors across different repositories.
 
+#### Aplazame Orbs
+
+| orb name | description |
+|---|---|---|
+| [aplazame/s3](https://circleci.com/orbs/registry/orb/aplazame/s3) | provides jobs and commands for deploying to s3 using docker image `aplazame/alpine:aws` |
+| [aplazame/rsync](https://circleci.com/orbs/registry/orb/aplazame/rsync) | provides jobs and commands for deploying via rsync using docker image `aplazame/alpine:rsync` |
+
 #### CircleCI CLI Tool Installation
 
 > Run this command for a [quick installation](https://circleci.com/docs/2.0/local-cli/#quick-installation)

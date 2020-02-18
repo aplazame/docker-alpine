@@ -8,7 +8,7 @@ executors:
         parameters:
             image:
                 type: string
-                default: aplazame/alpine:0.1.7-aws
+                default: aplazame/alpine:0.1.10-aws
             working_directory:
                 type: string
                 default: /tmp/workspace
