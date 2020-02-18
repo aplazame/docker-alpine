@@ -5,7 +5,7 @@
 | image | cloning image | description |
 |---|---|---|
 | aws | `docker push aplazame/alpine:aws` | includes `awscli` |
-| node | `docker push aplazame/alpine:node` | FROM node:10-alpine, includes bash, git, curl, rsync, make, ssh |
+| node | `docker push aplazame/alpine:node` | `FROM node:10-alpine` includes bash, git, curl, rsync, make, ssh |
 | python | `docker push aplazame/alpine:aws` | includes `python3` |
 | rsync | `docker push aplazame/alpine:aws` | just includes bash, ssh and rsync |
 
