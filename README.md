@@ -20,7 +20,8 @@ Orbs is a system that CircleCi has for share jobs, commands, and executors acros
 
 #### CircleCI CLI Tool Installation
 
-> [quick installation](https://circleci.com/docs/2.0/local-cli/#quick-installation)
+> Run this command for a [quick installation](https://circleci.com/docs/2.0/local-cli/#quick-installation)
+>
 > also check [alternative installation methods](https://circleci.com/docs/2.0/local-cli/#alternative-installation-methods)
 
 ``` sh
