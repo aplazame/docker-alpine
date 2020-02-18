@@ -9,7 +9,7 @@
 | python | `docker push aplazame/alpine:aws` | includes `python3` |
 | rsync | `docker push aplazame/alpine:aws` | just includes bash, ssh and rsync |
 
-These docker images are being published in [Docker HUB](https://hub.docker.com/repository/docker/aplazame/alpine)
+These docker images are being published in [Docker HUB](https://hub.docker.com/r/aplazame/alpine)
 
 Docker Hub is set up for automatically create new images when a semver tag is created in [github releases](./releases)
 
