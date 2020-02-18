@@ -4,10 +4,10 @@
 
 | image | cloning image | description |
 |---|---|---|
-| aws | `docker push aplazame/alpine:aws` | includes `awscli` |
-| node | `docker push aplazame/alpine:node` | `FROM node:10-alpine` includes bash, git, curl, rsync, make, ssh |
-| python | `docker push aplazame/alpine:aws` | includes `python3` |
-| rsync | `docker push aplazame/alpine:aws` | just includes bash, ssh and rsync |
+| [aws](./aws/Dockerfile) | `docker push aplazame/alpine:aws` | includes `awscli` |
+| [node](./node/Dockerfile) | `docker push aplazame/alpine:node` | `FROM node:10-alpine` includes bash, git, curl, rsync, make, ssh |
+| [python](./python/Dockerfile) | `docker push aplazame/alpine:aws` | includes `python3` |
+| [rsync](./rsync/Dockerfile) | `docker push aplazame/alpine:aws` | just includes bash, ssh and rsync |
 
 These docker images are being published in [Docker HUB](https://hub.docker.com/r/aplazame/alpine)
 
