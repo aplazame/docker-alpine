@@ -53,7 +53,17 @@ Create a personal access token in: https://circleci.com/account/api
 > CIRCLECI_CLI_TOKEN environment variable is not required when [CircleCI CLI Tool Setup](#circleci-cli-tool-setup)
 
 ``` sh
-publish-orbs CIRCLECI_CLI_TOKEN=a098a098...
+make publish-orbs CIRCLECI_CLI_TOKEN=a098a098...
+```
+
+> Increasing minor or mayor version
+
+``` sh
+# for minor
+make publish-orbs ORB_VERSION=minor CIRCLECI_CLI_TOKEN=a098a098...
+
+# for mayor
+make publish-orbs ORB_VERSION=mayor CIRCLECI_CLI_TOKEN=a098a098...
 ```
 
 
