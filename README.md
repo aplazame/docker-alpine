@@ -45,7 +45,7 @@ make validate-orbs
 # circleci orb validate ./circle-orbs/rsync.yml
 ```
 
-#### Publishing orbs
+#### Publishing Orbs
 
 Create a personal access token in: https://circleci.com/account/api
 
