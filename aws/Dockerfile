@@ -6,6 +6,7 @@ RUN apk add --update \
 	git \
 	curl \
 	rsync \
+	zip \
 	make \
 	ca-certificates \
 	python3

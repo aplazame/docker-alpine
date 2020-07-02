@@ -2,6 +2,7 @@
 FROM node:10-alpine
 
 RUN apk add --update \
+	zip \
 	bash \
 	git \
 	curl \
