@@ -13,8 +13,8 @@ RUN apk add --update \
 
 RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh | bash
 
-RUN export NVM_DIR="/root/.nvm" && \
-	[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+ENV NVM_DIR="/root/.nvm"
+RUN [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
 RUN nvm install 8 && \
 	nvm install 10 && \
