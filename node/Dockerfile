@@ -13,7 +13,7 @@ RUN apk add --update \
 
 RUN curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh | bash
 
-ENV NVM_DIR="/root/.nvm"
+ENV NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 # RUN [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 RUN . "$NVM_DIR/nvm.sh"
 
