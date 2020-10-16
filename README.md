@@ -6,8 +6,8 @@
 |---|---|---|
 | [aws](./aws/Dockerfile) | `docker push aplazame/alpine:aws` | includes `awscli` |
 | [node](./node/Dockerfile) | `docker push aplazame/alpine:node` | `FROM node:10-alpine` includes bash, git, curl, rsync, make, ssh |
-| [python](./python/Dockerfile) | `docker push aplazame/alpine:aws` | includes `python3` |
-| [rsync](./rsync/Dockerfile) | `docker push aplazame/alpine:aws` | just includes bash, ssh and rsync |
+| [python](./python/Dockerfile) | `docker push aplazame/alpine:python` | includes `python3` |
+| [rsync](./rsync/Dockerfile) | `docker push aplazame/alpine:rsync` | just includes bash, ssh and rsync |
 | [terraform](./terraform/Dockerfile) | `docker push aplazame/alpine:terraform` | includes `terraform` |
 
 These docker images are being published in [Docker HUB](https://hub.docker.com/r/aplazame/alpine)
