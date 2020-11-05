@@ -13,7 +13,7 @@ RUN apk add --no-cache --update \
 	python3\
 	py3-pip
 
-RUN pip3 install awscli ecs-deploy
+RUN pip3 install awscli ecs-deploy jose5
 
 RUN curl -sL https://sentry.io/get-cli/ | bash
 
