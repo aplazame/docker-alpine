@@ -1,4 +1,4 @@
-FROM alpine:3.12
+FROM terraform:0.13.1
 
 RUN apk add --no-cache --update \
 	bash \
