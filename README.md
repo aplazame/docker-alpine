@@ -9,6 +9,7 @@
 | [python](./python/Dockerfile) | `docker push aplazame/alpine:python` | includes `python3` |
 | [rsync](./rsync/Dockerfile) | `docker push aplazame/alpine:rsync` | just includes bash, ssh and rsync |
 | [terraform](./terraform/Dockerfile) | `docker push aplazame/alpine:terraform` | includes `terraform` |
+| [packer](./packer/Dockerfile) | `docker push aplazame/packer:version` | includes `packer` |
 
 These docker images are being published in [Docker HUB](https://hub.docker.com/r/aplazame/alpine)
 
