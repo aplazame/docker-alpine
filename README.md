@@ -10,6 +10,7 @@
 | [rsync](./rsync/Dockerfile) | `docker push aplazame/alpine:rsync` | just includes bash, ssh and rsync |
 | [terraform](./terraform/Dockerfile) | `docker push aplazame/alpine:terraform` | includes `terraform` |
 | [packer](./packer/Dockerfile) | `docker push aplazame/packer:version` | includes `packer` |
+| [packer](./aws-nuke/Dockerfile) | `docker push aplazame/aws-nuke:version` | includes `aws-nuke` |
 
 These docker images are being published in [Docker HUB](https://hub.docker.com/r/aplazame/alpine)
 
