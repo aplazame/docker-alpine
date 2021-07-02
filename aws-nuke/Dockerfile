@@ -7,9 +7,17 @@ WORKDIR /tmp
 # hadolint ignore=DL3018
 RUN apk add --no-cache \
         curl \
-        git && \
+        git \
+        jq \
+        python3 \
+        py3-pip \
+        && pip3 install --upgrade pip \
+        && pip3 install \
+        awscli \
+        && rm -rf /var/cache/apk/*
+        && \
         curl -o /usr/bin/aws-nuke -LJO https://github.com/rebuy-de/aws-nuke/releases/download/v${VERSION}/aws-nuke-v${VERSION}-linux-amd64 && \
-        chmod +x /usr/bin/aws-nuke
+        chmod +x /usr/bin/aws-nuke \
 
 RUN adduser -S nroot
 
