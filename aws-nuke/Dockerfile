@@ -12,6 +12,7 @@ RUN apk add --no-cache \
         bash \
         python3 \
         py3-pip \
+        gettext \
     && pip3 install --no-cache-dir --upgrade pip awscli \
     && curl -o /tmp/aws-nuke.tar.gz -LJO https://github.com/rebuy-de/aws-nuke/releases/download/v${VERSION}/aws-nuke-v${VERSION}-linux-amd64.tar.gz && \
     tar -xvf aws-nuke.tar.gz && \
