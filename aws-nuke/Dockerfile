@@ -9,14 +9,16 @@ RUN apk add --no-cache \
         curl \
         git \
         jq \
+        bash \
         python3 \
         py3-pip \
     && pip3 install --no-cache-dir --upgrade pip awscli \
-    && curl -o /usr/bin/aws-nuke -LJO https://github.com/rebuy-de/aws-nuke/releases/download/v${VERSION}/aws-nuke-v${VERSION}-linux-amd64 && \
-    chmod +x /usr/bin/aws-nuke 
+    && curl -o /tmp/aws-nuke.tar.gz -LJO https://github.com/rebuy-de/aws-nuke/releases/download/v${VERSION}/aws-nuke-v${VERSION}-linux-amd64.tar.gz && \
+    tar -xvf aws-nuke.tar.gz && \
+    mv aws-nuke-v${VERSION}-linux-amd64 /usr/local/bin/aws-nuke
 
-RUN adduser -S nroot
+RUN adduser -S jenkins
 
-USER nroot
+USER jenkins
 
-ENTRYPOINT [ "/bin/sh" ]
+ENTRYPOINT [ "/bin/bash" ]
