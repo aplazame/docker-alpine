@@ -90,7 +90,7 @@ commands:
         steps:
             - run:
                 name: "Deploying file to s3: << parameters.src >> > s3:<< parameters.bucket_name >>/<< parameters.dest >>"
-                command: >
+                command: |
                     <<# parameters.use_AWS_PROFILE >>
                     export AWS_PROFILE=<< parameters.AWS_PROFILE >>; \
                     unset AWS_ACCESS_KEY_ID; \
@@ -160,7 +160,7 @@ commands:
             - run:
                 condition: << parameters.index >>
                 name: "Deploying index.html to s3 > s3:<< parameters.bucket_name >>/<<# parameters.dest >><< parameters.dest >>/<</ parameters.dest >><< parameters.index >>"
-                command: >
+                command: |
                     <<# parameters.use_AWS_PROFILE >>
                     export AWS_PROFILE=<< parameters.AWS_PROFILE >>; \
                     unset AWS_ACCESS_KEY_ID; \
