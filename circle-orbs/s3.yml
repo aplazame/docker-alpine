@@ -114,10 +114,21 @@ commands:
             index_arguments:
                 type: string
                 default: ''
+            use_AWS_PROFILE:
+                type: boolean
+                default: false
+            AWS_PROFILE:
+                type: string
+                default: ''
         steps:
             - run:
                 name: "Deploying folder to s3: << parameters.src >> > s3:<< parameters.bucket_name >>/<< parameters.dest >>"
                 command: |
+                    <<# parameters.use_AWS_PROFILE >>
+                    export AWS_PROFILE=<< parameters.AWS_PROFILE >>; \
+                    unset AWS_ACCESS_KEY_ID; \
+                    unset AWS_SECRET_ACCESS_KEY; \
+                    <</ parameters.use_AWS_PROFILE >>
                     aws s3 sync --acl << parameters.acl >> \
                         --cache-control "<< parameters.cache_control >>" \
                         <<# parameters.overwrite >>--delete <</ parameters.overwrite >>\
@@ -128,6 +139,11 @@ commands:
                 condition: << parameters.index >>
                 name: "Deploying index.html to s3 > s3:<< parameters.bucket_name >>/<<# parameters.dest >><< parameters.dest >>/<</ parameters.dest >><< parameters.index >>"
                 command: >
+                    <<# parameters.AWS_PROFILE >>
+                    export AWS_PROFILE=<< parameters.AWS_PROFILE >>; \
+                    unset AWS_ACCESS_KEY_ID; \
+                    unset AWS_SECRET_ACCESS_KEY; \
+                    <</ parameters.AWS_PROFILE >>
                     aws s3 cp --acl << parameters.acl >> \
                         "<< parameters.src >>/<< parameters.index >>" \
                         "s3://<< parameters.bucket_name >>/<<# parameters.dest >><< parameters.dest >>/<</ parameters.dest >><< parameters.index >>" \
