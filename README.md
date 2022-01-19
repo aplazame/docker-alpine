@@ -4,13 +4,13 @@
 
 | image | cloning image | description |
 |---|---|---|
-| [aws](./aws/Dockerfile) | `docker push aplazame/alpine:aws` | includes `awscli` |
-| [node](./node/Dockerfile) | `docker push aplazame/alpine:node` | `FROM node:10-alpine` includes bash, git, curl, rsync, make, ssh |
-| [python](./python/Dockerfile) | `docker push aplazame/alpine:python` | includes `python3` |
-| [rsync](./rsync/Dockerfile) | `docker push aplazame/alpine:rsync` | just includes bash, ssh and rsync |
-| [terraform](./terraform/Dockerfile) | `docker push aplazame/alpine:terraform` | includes `terraform` |
-| [packer](./packer/Dockerfile) | `docker push aplazame/packer:version` | includes `packer` |
-| [packer](./aws-nuke/Dockerfile) | `docker push aplazame/aws-nuke:version` | includes `aws-nuke` |
+| [aws](./aws/Dockerfile) | `docker pull aplazame/alpine:aws` | includes `awscli` |
+| [node](./node/Dockerfile) | `docker pull aplazame/alpine:node` | `FROM node:10-alpine` includes bash, git, curl, rsync, make, ssh |
+| [python](./python/Dockerfile) | `docker pull aplazame/alpine:python` | includes `python3` |
+| [rsync](./rsync/Dockerfile) | `docker pull aplazame/alpine:rsync` | just includes bash, ssh and rsync |
+| [terraform](./terraform/Dockerfile) | `docker pull aplazame/alpine:terraform` | includes `terraform` |
+| [packer](./packer/Dockerfile) | `docker pull aplazame/packer:version` | includes `packer` |
+| [packer](./aws-nuke/Dockerfile) | `docker pull aplazame/aws-nuke:version` | includes `aws-nuke` |
 
 These docker images are being published in [Docker HUB](https://hub.docker.com/r/aplazame/alpine)
 
