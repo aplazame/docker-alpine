@@ -30,6 +30,7 @@ pipeline {
       environment {
         SONAR_TEST = credentials('SONAR_TEST')
         CODE_SOURCE_DEFAULT = "aws"
+        GITHUB_TOKEN = credentials('gh-releases-token-old')
       }
       steps {
         scmSkip()
