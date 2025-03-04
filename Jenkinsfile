@@ -29,7 +29,7 @@ pipeline {
       }
       environment {
         SONAR_TEST = credentials('SONAR_TEST')
-        CODE_SOURCE_DEFAULT = "aws"
+        CODE_SOURCE_DEFAULT = "/"
         GITHUB_TOKEN = credentials('gh-releases-token-old')
       }
       steps {
